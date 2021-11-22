@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>从零搭建React全家桶框架教程：快速搭建react+react-router+redux项目 | 阿郎佐证虎之心</title><meta name="keywords" content="React"><meta name="author" content="阿郎佐证虎之心"><meta name="copyright" content="阿郎佐证虎之心"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="搭建基本的react项目  我们使用create-react-app(npm要全局安装create-react-app)快速创建一个react项目：  123npx create-react-app my-appcd my-appnpm start   启动成功后，就可以看到react的页面啦。接下来我们稍稍调整下项目的目录结构和页面内容，新增About页面。  在src目录下新建pages目录，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零搭建React全家桶框架教程：快速搭建react+react-router+redux项目">
+<meta property="og:url" content="https://hocoa.github.io/2021/03/31/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAReact%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAreact-react-router-redux%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="阿郎佐证虎之心">
+<meta property="og:description" content="搭建基本的react项目  我们使用create-react-app(npm要全局安装create-react-app)快速创建一个react项目：  123npx create-react-app my-appcd my-appnpm start   启动成功后，就可以看到react的页面啦。接下来我们稍稍调整下项目的目录结构和页面内容，新增About页面。  在src目录下新建pages目录，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/11/3m1IpSUATMYyl2O.png">
+<meta property="article:published_time" content="2021-03-31T03:13:50.000Z">
+<meta property="article:modified_time" content="2021-03-31T03:14:13.641Z">
+<meta property="article:author" content="阿郎佐证虎之心">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/11/3m1IpSUATMYyl2O.png"><link rel="shortcut icon" href="/img/avatar.png"><link rel="canonical" href="https://hocoa.github.io/2021/03/31/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAReact%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAreact-react-router-redux%E9%A1%B9%E7%9B%AE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '从零搭建React全家桶框架教程：快速搭建react+react-router+redux项目',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-31 11:14:13'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E4%B9%A6%E7%B1%8D"><i class="fa-fw /book/"></i><span> 0</span></a></li><li><a class="site-page child" href="/%E6%91%84%E5%BD%B1"><i class="fa-fw /photography/"></i><span> 1</span></a></li><li><a class="site-page child" href="/%E7%94%B5%E5%BD%B1"><i class="fa-fw /movies/"></i><span> 2</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/11/3m1IpSUATMYyl2O.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿郎佐证虎之心</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E4%B9%A6%E7%B1%8D"><i class="fa-fw /book/"></i><span> 0</span></a></li><li><a class="site-page child" href="/%E6%91%84%E5%BD%B1"><i class="fa-fw /photography/"></i><span> 1</span></a></li><li><a class="site-page child" href="/%E7%94%B5%E5%BD%B1"><i class="fa-fw /movies/"></i><span> 2</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">从零搭建React全家桶框架教程：快速搭建react+react-router+redux项目</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-31T03:13:50.000Z" title="发表于 2021-03-31 11:13:50">2021-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-31T03:14:13.641Z" title="更新于 2021-03-31 11:14:13">2021-03-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/React/">React</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="从零搭建React全家桶框架教程：快速搭建react+react-router+redux项目"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h4 id="搭建基本的react项目"><a href="#搭建基本的react项目" class="headerlink" title="搭建基本的react项目"></a>搭建基本的react项目</h4><ol>
+<li> 我们使用<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/facebook/create-react-app%23creating-an-app">create-react-app</a>(<strong>npm要全局安装create-react-app</strong>)快速创建一个react项目：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app my-app</span><br><span class="line">cd my-app</span><br><span class="line">npm start </span><br></pre></td></tr></table></figure>
+
+<p>启动成功后，就可以看到react的页面啦。接下来我们稍稍调整下项目的目录结构和页面内容，新增About页面。</p>
+<ol start="2">
+<li>在src目录下新建pages目录，用来放置前端页面。新建App目录，将原来App.js和App.css移动进去，注意这两个文件引入路径的修改。 <img src="https://upload-images.jianshu.io/upload_images/5376938-3a27aa038cba16c1.png"> 项目目录结构图</li>
+<li>在src目录下新增Home页面和About页面（后面用到）</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 路径：/src/pages/Home/Home.js</span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line"></span><br><span class="line">const Home = () =&gt; (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Home Page&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;这是Home页面&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default Home </span><br><span class="line">``````</span><br><span class="line">// 路径：/src/pages/About/About.js</span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line"></span><br><span class="line">const About = () =&gt; (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;About Page&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;这是About页面&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default About </span><br></pre></td></tr></table></figure>
+
+<h4 id="接入react-router"><a href="#接入react-router" class="headerlink" title="接入react-router"></a>接入react-router</h4><p>接下来，我们开始在项目中接入react-router，通过npm指令安装”react-router”和”react-router-dom”：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -S react-router react-router-dom </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li> 我们修改一下<code>/src/pages/App/App.js</code>和<code>/src/index.js</code>的内容：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// /src/pages/App/App.js</span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line">import &#123; Route, Link &#125; from &#x27;react-router-dom&#x27;</span><br><span class="line">import Home from &#x27;../Home/Home&#x27;</span><br><span class="line">import About from &#x27;../About/About&#x27;</span><br><span class="line"></span><br><span class="line">const App = () =&gt; (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">      &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;&amp;nbsp;</span><br><span class="line">      &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line"></span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;Route exact path=&quot;/&quot; component=&#123;Home&#125; /&gt;</span><br><span class="line">      &lt;Route exact path=&quot;/about&quot; component=&#123;About&#125; /&gt;</span><br><span class="line">    &lt;/main&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">)</span><br><span class="line">export default App </span><br><span class="line">``````</span><br><span class="line">// /src/index.js</span><br><span class="line">// ...省略代码</span><br><span class="line">import &#123; Router &#125; from &quot;react-router&quot;;</span><br><span class="line">import &#123; createBrowserHistory &#125; from &quot;history&quot;;</span><br><span class="line">const history = createBrowserHistory();</span><br><span class="line">// ...省略代码</span><br><span class="line">&lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">  &lt;App /&gt;</span><br><span class="line">&lt;/Router&gt;</span><br><span class="line">// ...省略代码 </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>这样我们就配置好了react-router，执行<code>npm start</code>命令，在浏览器中查看页面，点击Home展示Home页面，点击About展示About页面   <img src="https://upload-images.jianshu.io/upload_images/5376938-3cb04c7fd2dec77f.png"> react路由配置成功后预览页面</li>
+</ol>
+<h4 id="接入redux"><a href="#接入redux" class="headerlink" title="接入redux"></a>接入redux</h4><p>接下来，我们在项目中接入redux，首先通过npm安装以下依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i react-redux redux redux-thunk connected-react-router </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li> 在src目录下新建modules目录，这个目录用来存放reducer相关的文件，新建counter.js和index.js</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">// /src/modules/counter.js</span><br><span class="line">export const INCREMENT_REQUESTED = &#x27;counter/INCREMENT_REQUESTED&#x27;</span><br><span class="line">export const INCREMENT = &#x27;counter/INCREMENT&#x27;</span><br><span class="line">export const DECREMENT_REQUESTED = &#x27;counter/DECREMENT_REQUESTED&#x27;</span><br><span class="line">export const DECREMENT = &#x27;counter/DECREMENT&#x27;</span><br><span class="line"></span><br><span class="line">const initialState = &#123;</span><br><span class="line">    count: 0,</span><br><span class="line">    isIncrementing: false,</span><br><span class="line">    isDecrementing: false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default (state = initialState, action) =&gt; &#123;</span><br><span class="line">    switch (action.type) &#123;</span><br><span class="line">        case INCREMENT_REQUESTED:</span><br><span class="line">            return &#123;</span><br><span class="line">                ...state,</span><br><span class="line">                isIncrementing: true</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            case INCREMENT:</span><br><span class="line">                return &#123;</span><br><span class="line">                    ...state,</span><br><span class="line">                    count: state.count + 1,</span><br><span class="line">                        isIncrementing: !state.isIncrementing</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                case DECREMENT_REQUESTED:</span><br><span class="line">                    return &#123;</span><br><span class="line">                        ...state,</span><br><span class="line">                        isDecrementing: true</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    case DECREMENT:</span><br><span class="line">                        return &#123;</span><br><span class="line">                            ...state,</span><br><span class="line">                            count: state.count - 1,</span><br><span class="line">                                isDecrementing: !state.isDecrementing</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        default:</span><br><span class="line">                            return state</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const increment = () =&gt; &#123;</span><br><span class="line">    return dispatch =&gt; &#123;</span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            type: INCREMENT_REQUESTED</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            type: INCREMENT</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const incrementAsync = () =&gt; &#123;</span><br><span class="line">    return dispatch =&gt; &#123;</span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            type: INCREMENT_REQUESTED</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        return setTimeout(() =&gt; &#123;</span><br><span class="line">            dispatch(&#123;</span><br><span class="line">                type: INCREMENT</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const decrement = () =&gt; &#123;</span><br><span class="line">    return dispatch =&gt; &#123;</span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            type: DECREMENT_REQUESTED</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            type: DECREMENT</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export const decrementAsync = () =&gt; &#123;</span><br><span class="line">    return dispatch =&gt; &#123;</span><br><span class="line">        dispatch(&#123;</span><br><span class="line">            type: DECREMENT_REQUESTED</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        return setTimeout(() =&gt; &#123;</span><br><span class="line">            dispatch(&#123;</span><br><span class="line">                type: DECREMENT</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;, 3000)</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line">``````</span><br><span class="line">// /src/modules/index.js</span><br><span class="line">import &#123; combineReducers &#125; from &#x27;redux&#x27;</span><br><span class="line">import counter from &#x27;./counter&#x27;</span><br><span class="line">import &#123; connectRouter &#125; from &#x27;connected-react-router&#x27;</span><br><span class="line"></span><br><span class="line">const createRootReducer = (history)=&gt; combineReducers(&#123;</span><br><span class="line">  counter,</span><br><span class="line">  router: connectRouter(history)&#125;)</span><br><span class="line"></span><br><span class="line">export default createRootReducer </span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li> 在src目录下新建store.js</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// /src/store.js</span><br><span class="line">import &#123; createStore, applyMiddleware, compose &#125; from &#x27;redux&#x27;</span><br><span class="line">import &#123; routerMiddleware &#125; from &#x27;connected-react-router&#x27;</span><br><span class="line">import thunk from &#x27;redux-thunk&#x27;</span><br><span class="line">import * as History from &#x27;history&#x27;</span><br><span class="line">import createRootReducer from &#x27;./modules&#x27;</span><br><span class="line"></span><br><span class="line">export const history = History.createBrowserHistory()</span><br><span class="line"></span><br><span class="line">const initialState = &#123;&#125;</span><br><span class="line">const enhancers = []</span><br><span class="line">const middleware = [thunk, routerMiddleware(history)]</span><br><span class="line"></span><br><span class="line">if (process.env.NODE_ENV === &#x27;development&#x27;) &#123;</span><br><span class="line">  const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__</span><br><span class="line">  if (typeof devToolsExtension === &#x27;function&#x27;) &#123;</span><br><span class="line">    enhancers.push(devToolsExtension())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const composedEnhancers = compose(</span><br><span class="line">  applyMiddleware(...middleware),</span><br><span class="line">  ...enhancers</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default createStore(</span><br><span class="line">  createRootReducer(history),</span><br><span class="line">  initialState,</span><br><span class="line">  composedEnhancers</span><br><span class="line">) </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li> 修改下<code>/src/index.js</code>的内容：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// /src/index.js</span><br><span class="line">// ...省略代码</span><br><span class="line">import &#123; Provider &#125; from &#x27;react-redux&#x27;</span><br><span class="line">import &#123; ConnectedRouter &#125; from &#x27;connected-react-router&#x27;</span><br><span class="line">import store, &#123; history &#125; from &#x27;./store&#x27;</span><br><span class="line">// ...省略代码</span><br><span class="line">&lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">  &lt;ConnectedRouter history=&#123;history&#125;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;/ConnectedRouter&gt;</span><br><span class="line">&lt;/Provider&gt;</span><br><span class="line">// ...省略代码 </span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li> 在Home页和About页中接入redux</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">// 修改 /src/pages/Home/Home.js</span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line">import &#123; push &#125; from &#x27;connected-react-router&#x27;</span><br><span class="line">import &#123; bindActionCreators &#125; from &#x27;redux&#x27;</span><br><span class="line">import &#123; connect &#125; from &#x27;react-redux&#x27;</span><br><span class="line">import &#123;</span><br><span class="line">  increment,</span><br><span class="line">  incrementAsync,</span><br><span class="line">  decrement,</span><br><span class="line">  decrementAsync</span><br><span class="line">&#125; from &#x27;../../modules/counter&#x27;</span><br><span class="line"></span><br><span class="line">const Home = props =&gt; (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;Home&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;Count: &#123;props.count&#125;&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;button onClick=&#123;props.increment&#125;&gt;Increment&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;props.incrementAsync&#125; disabled=&#123;props.isIncrementing&#125;&gt;</span><br><span class="line">        Increment Async</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;button onClick=&#123;props.decrement&#125;&gt;Decrement&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;props.decrementAsync&#125; disabled=&#123;props.isDecrementing&#125;&gt;</span><br><span class="line">        Decrement Async</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line"></span><br><span class="line">    &lt;p&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; props.changePage()&#125;&gt;</span><br><span class="line">        Go to about page via redux</span><br><span class="line">      &lt;/button&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">const mapStateToProps = (&#123; counter &#125;) =&gt; (&#123;</span><br><span class="line">  count: counter.count,</span><br><span class="line">  isIncrementing: counter.isIncrementing,</span><br><span class="line">  isDecrementing: counter.isDecrementing</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const mapDispatchToProps = dispatch =&gt;</span><br><span class="line">  bindActionCreators(</span><br><span class="line">    &#123;</span><br><span class="line">      increment,</span><br><span class="line">      incrementAsync,</span><br><span class="line">      decrement,</span><br><span class="line">      decrementAsync,</span><br><span class="line">      changePage: () =&gt; push(&#x27;/about&#x27;)</span><br><span class="line">    &#125;,</span><br><span class="line">    dispatch</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">export default connect(</span><br><span class="line">  mapStateToProps,</span><br><span class="line">  mapDispatchToProps</span><br><span class="line">)(Home) </span><br><span class="line">``````</span><br><span class="line">// 修改 /src/pages/About/About.js</span><br><span class="line">import React from &#x27;react&#x27;</span><br><span class="line">import &#123; connect &#125; from &#x27;react-redux&#x27;</span><br><span class="line"></span><br><span class="line">const About = (props) =&gt; (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h1&gt;About Page&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;这是About页面&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;count计数：&#123;props.count&#125;&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">const mapStateToProps = (&#123; counter &#125;) =&gt; (&#123;</span><br><span class="line">  count: counter.count</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default connect(</span><br><span class="line">  mapStateToProps</span><br><span class="line">)(About) </span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li> 到此，一个react+react-router+redux的基本项目就已经配置完成了，接下来就可以做更深层次的业务开发了。</li>
+</ol>
+<h4 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h4><p>本文中没有对react-router和redux做什么原理性和概念性的介绍，纯粹作为傻瓜式的教程，由react基本项目，到接入react-router，最后接入redux完成一个基本的react全家桶项目搭建，目的是让初学者能够体验一下完整的react全家桶基本项目。在本教程中如果有什么问题，可以留言哦。<br>如果想要深入理解<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://zh-hans.reactjs.org/">react</a>、<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://reactrouter.com/">react-router</a>和<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://redux.js.org/introduction/getting-started">redux</a>的知识，建议去官网阅读文档深入学习。<br>最后，在业余时间编写了一个快速构建react全家桶项目模板、vue2.x全家桶项目模板和、vue3项目模板的npm脚手架<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/Sarlaka/fast-project">fast-project</a>，希望大家能够下载体验，给出一些建议吶~</p>
+<p>本文转自 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9c0db7677ed1">https://www.jianshu.com/p/9c0db7677ed1</a>，如有侵权，请联系删除。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">阿郎佐证虎之心</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hocoa.github.io/2021/03/31/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAReact%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAreact-react-router-redux%E9%A1%B9%E7%9B%AE/">https://hocoa.github.io/2021/03/31/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BAReact%E5%85%A8%E5%AE%B6%E6%A1%B6%E6%A1%86%E6%9E%B6%E6%95%99%E7%A8%8B%EF%BC%9A%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAreact-react-router-redux%E9%A1%B9%E7%9B%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hocoa.github.io" target="_blank">阿郎佐证虎之心</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/React/">React</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/11/3m1IpSUATMYyl2O.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/05/17/this%E3%80%81apply%E3%80%81call%E3%80%81bind/"><img class="prev-cover" src="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">this、apply、call、bind</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/17/%E7%94%A8vue-lic4%E5%88%9B%E5%BB%BAvue%E9%A1%B9%E7%9B%AE/"><img class="next-cover" src="https://i.loli.net/2021/03/11/SXFpEDrV5WfyIPa.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">用vue-lic4创建vue项目详解</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">阿郎佐证虎之心</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">7</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Hocoa"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Hocoa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1205232253@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%9F%BA%E6%9C%AC%E7%9A%84react%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">搭建基本的react项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5react-router"><span class="toc-number">2.</span> <span class="toc-text">接入react-router</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5redux"><span class="toc-number">3.</span> <span class="toc-text">接入redux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE"><span class="toc-number">4.</span> <span class="toc-text">结尾</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/22/ssh%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" title="无题"><img src="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/11/22/ssh%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" title="无题">无题</a><time datetime="2021-11-22T01:28:52.000Z" title="发表于 2021-11-22 09:28:52">2021-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95/" title="JavaScript常用原生方法"><img src="https://i.loli.net/2021/03/11/NrEFQqv2PDKyYwJ.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript常用原生方法"/></a><div class="content"><a class="title" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95/" title="JavaScript常用原生方法">JavaScript常用原生方法</a><time datetime="2021-11-21T03:52:16.861Z" title="发表于 2021-11-21 11:52:16">2021-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9FDOM%E6%93%8D%E4%BD%9C/" title="JavaScript常用原生DOM操作"><img src="https://i.loli.net/2021/03/11/F2ILeOinNRVWJwT.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript常用原生DOM操作"/></a><div class="content"><a class="title" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9FDOM%E6%93%8D%E4%BD%9C/" title="JavaScript常用原生DOM操作">JavaScript常用原生DOM操作</a><time datetime="2021-11-21T03:52:16.860Z" title="发表于 2021-11-21 11:52:16">2021-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/21/%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E5%88%86%E7%B1%BB%E8%BD%ACtree%E6%95%B0%E7%BB%84%EF%BC%8Ctree%E8%BD%ACtable%E8%A1%A8%E6%A0%BC/" title="一维数组转分类转tree数组，tree转table表格"><img src="https://i.loli.net/2021/03/11/NrEFQqv2PDKyYwJ.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="一维数组转分类转tree数组，tree转table表格"/></a><div class="content"><a class="title" href="/2021/11/21/%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E8%BD%AC%E5%88%86%E7%B1%BB%E8%BD%ACtree%E6%95%B0%E7%BB%84%EF%BC%8Ctree%E8%BD%ACtable%E8%A1%A8%E6%A0%BC/" title="一维数组转分类转tree数组，tree转table表格">一维数组转分类转tree数组，tree转table表格</a><time datetime="2021-11-21T03:20:51.000Z" title="发表于 2021-11-21 11:20:51">2021-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/17/this%E3%80%81apply%E3%80%81call%E3%80%81bind/" title="this、apply、call、bind"><img src="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="this、apply、call、bind"/></a><div class="content"><a class="title" href="/2021/05/17/this%E3%80%81apply%E3%80%81call%E3%80%81bind/" title="this、apply、call、bind">this、apply、call、bind</a><time datetime="2021-05-17T02:59:51.000Z" title="发表于 2021-05-17 10:59:51">2021-05-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 阿郎佐证虎之心</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="5143337014" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
