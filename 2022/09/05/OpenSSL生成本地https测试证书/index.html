@@ -1,0 +1,250 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenSSL生成本地https测试证书 | 阿郎佐虎之心</title><meta name="keywords" content="OpenSSL"><meta name="author" content="阿郎佐虎之心"><meta name="copyright" content="阿郎佐虎之心"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、准备工作1.本地安装好git工具2.创建一个cert文件夹用来放证书文件 二、创建证书第一步：使用openssl生成密钥privkey.pem1.操作系统说明windows系统：在cert目录中打开git命令窗口（注意：不是CMD窗口）linux或mac系统：cd定位到cert目录 12cd &#x2F;xxx&#x2F;cert  2.然后执行以下命令生成privkey.pem 12openssl genrsa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenSSL生成本地https测试证书">
+<meta property="og:url" content="https://hocoa.github.io/2022/09/05/OpenSSL%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0https%E6%B5%8B%E8%AF%95%E8%AF%81%E4%B9%A6/index.html">
+<meta property="og:site_name" content="阿郎佐虎之心">
+<meta property="og:description" content="一、准备工作1.本地安装好git工具2.创建一个cert文件夹用来放证书文件 二、创建证书第一步：使用openssl生成密钥privkey.pem1.操作系统说明windows系统：在cert目录中打开git命令窗口（注意：不是CMD窗口）linux或mac系统：cd定位到cert目录 12cd &#x2F;xxx&#x2F;cert  2.然后执行以下命令生成privkey.pem 12openssl genrsa">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png">
+<meta property="article:published_time" content="2022-09-05T00:36:01.755Z">
+<meta property="article:modified_time" content="2022-09-05T00:38:07.180Z">
+<meta property="article:author" content="阿郎佐虎之心">
+<meta property="article:tag" content="OpenSSL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png"><link rel="shortcut icon" href="/img/avatar.png"><link rel="canonical" href="https://hocoa.github.io/2022/09/05/OpenSSL%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0https%E6%B5%8B%E8%AF%95%E8%AF%81%E4%B9%A6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'OpenSSL生成本地https测试证书',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-09-05 08:38:07'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E4%B9%A6%E7%B1%8D"><i class="fa-fw /book/"></i><span> 0</span></a></li><li><a class="site-page child" href="/%E6%91%84%E5%BD%B1"><i class="fa-fw /photography/"></i><span> 1</span></a></li><li><a class="site-page child" href="/%E7%94%B5%E5%BD%B1"><i class="fa-fw /movies/"></i><span> 2</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">阿郎佐虎之心</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E4%B9%A6%E7%B1%8D"><i class="fa-fw /book/"></i><span> 0</span></a></li><li><a class="site-page child" href="/%E6%91%84%E5%BD%B1"><i class="fa-fw /photography/"></i><span> 1</span></a></li><li><a class="site-page child" href="/%E7%94%B5%E5%BD%B1"><i class="fa-fw /movies/"></i><span> 2</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">OpenSSL生成本地https测试证书</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-09-05T00:36:01.755Z" title="发表于 2022-09-05 08:36:01">2022-09-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-09-05T00:38:07.180Z" title="更新于 2022-09-05 08:38:07">2022-09-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/OpenSSL/">OpenSSL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="OpenSSL生成本地https测试证书"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a><a target="_blank" rel="noopener" href="https://lihefei.blog.csdn.net/article/details/121972525"></a>一、准备工作</h2><p>1.本地安装好git工具<br>2.创建一个cert文件夹用来放证书文件</p>
+<h2 id="二、创建证书"><a href="#二、创建证书" class="headerlink" title="二、创建证书"></a><a target="_blank" rel="noopener" href="https://lihefei.blog.csdn.net/article/details/121972525"></a>二、创建证书</h2><h4 id="第一步：使用openssl生成密钥privkey-pem"><a href="#第一步：使用openssl生成密钥privkey-pem" class="headerlink" title="第一步：使用openssl生成密钥privkey.pem"></a><a target="_blank" rel="noopener" href="https://lihefei.blog.csdn.net/article/details/121972525"></a>第一步：使用openssl生成密钥privkey.pem</h4><p>1.操作系统说明<br>windows系统：在cert目录中打开git命令窗口（注意：不是CMD窗口）<br><img src="https://img-blog.csdnimg.cn/894aff5585da454c9c6c915d398911de.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/b230ea94115f4eb4b0093d9c214cd294.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGloZWZlaV9jb2Rlcg==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述"><br>linux或mac系统：cd定位到cert目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /xxx/cert</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.然后执行以下命令生成privkey.pem</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out privkey.pem 1024/2048</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果出现提示：genrsa: Can’t parse “1024/2048” as a number，请删除命令最后面的/2048再执行</p>
+</blockquote>
+<h4 id="第二步：使用密钥privkey-pem生成证书server-pem"><a href="#第二步：使用密钥privkey-pem生成证书server-pem" class="headerlink" title="第二步：使用密钥privkey.pem生成证书server.pem"></a><a target="_blank" rel="noopener" href="https://lihefei.blog.csdn.net/article/details/121972525"></a>第二步：使用密钥privkey.pem生成证书server.pem</h4><p>1.执行以下命令，数字365表示证书有效期天数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -x509 -key privkey.pem -out server.pem -days 365</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.然后按照步骤填写信息（测试环境下可随意填写或者为空也可以，域名建议填写）<br><img src="https://img-blog.csdnimg.cn/04c4da9b3dc1434a8b6e481f62828aa5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAbGloZWZlaV9jb2Rlcg==,size_15,color_FFFFFF,t_70,g_se,x_16" alt="**加粗样式**"><br>3.经过上面两步后生成了两个证书文件<br><img src="https://img-blog.csdnimg.cn/8bcb138575764fc6bafdc6a6614fdcc2.png" alt="在这里插入图片描述"></p>
+<h2 id="三、使用证书"><a href="#三、使用证书" class="headerlink" title="三、使用证书"></a><a target="_blank" rel="noopener" href="https://lihefei.blog.csdn.net/article/details/121972525"></a>三、使用证书</h2><p>复制两个文件到需要用到的目录下即可。</p>
+<p>本文转自 <a target="_blank" rel="noopener" href="https://lihefei.blog.csdn.net/article/details/121972525">https://lihefei.blog.csdn.net/article/details/121972525</a>，如有侵权，请联系删除。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">阿郎佐虎之心</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hocoa.github.io/2022/09/05/OpenSSL%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0https%E6%B5%8B%E8%AF%95%E8%AF%81%E4%B9%A6/">https://hocoa.github.io/2022/09/05/OpenSSL%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0https%E6%B5%8B%E8%AF%95%E8%AF%81%E4%B9%A6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hocoa.github.io" target="_blank">阿郎佐虎之心</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OpenSSL/">OpenSSL</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/11/23/three-js%E5%85%A8%E6%99%AF%E8%A7%86%E9%A2%91/"><img class="next-cover" src="https://i.loli.net/2021/03/11/x37U5cEqzblmTnY.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">three.js全景视频</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">阿郎佐虎之心</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Hocoa"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Hocoa" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1205232253@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">一、准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA%E8%AF%81%E4%B9%A6"><span class="toc-number">2.</span> <span class="toc-text">二、创建证书</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8openssl%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5privkey-pem"><span class="toc-number">2.0.1.</span> <span class="toc-text">第一步：使用openssl生成密钥privkey.pem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%AF%86%E9%92%A5privkey-pem%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6server-pem"><span class="toc-number">2.0.2.</span> <span class="toc-text">第二步：使用密钥privkey.pem生成证书server.pem</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BD%BF%E7%94%A8%E8%AF%81%E4%B9%A6"><span class="toc-number">3.</span> <span class="toc-text">三、使用证书</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/OpenSSL%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0https%E6%B5%8B%E8%AF%95%E8%AF%81%E4%B9%A6/" title="OpenSSL生成本地https测试证书"><img src="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OpenSSL生成本地https测试证书"/></a><div class="content"><a class="title" href="/2022/09/05/OpenSSL%E7%94%9F%E6%88%90%E6%9C%AC%E5%9C%B0https%E6%B5%8B%E8%AF%95%E8%AF%81%E4%B9%A6/" title="OpenSSL生成本地https测试证书">OpenSSL生成本地https测试证书</a><time datetime="2022-09-05T00:36:01.755Z" title="发表于 2022-09-05 08:36:01">2022-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/23/three-js%E5%85%A8%E6%99%AF%E8%A7%86%E9%A2%91/" title="three.js全景视频"><img src="https://i.loli.net/2021/03/11/x37U5cEqzblmTnY.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="three.js全景视频"/></a><div class="content"><a class="title" href="/2021/11/23/three-js%E5%85%A8%E6%99%AF%E8%A7%86%E9%A2%91/" title="three.js全景视频">three.js全景视频</a><time datetime="2021-11-23T02:27:25.000Z" title="发表于 2021-11-23 10:27:25">2021-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/22/ssh%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" title="git ssh配置说明"><img src="https://i.loli.net/2021/03/11/6KGl1gUy9RHqMpY.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="git ssh配置说明"/></a><div class="content"><a class="title" href="/2021/11/22/ssh%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" title="git ssh配置说明">git ssh配置说明</a><time datetime="2021-11-22T01:28:52.000Z" title="发表于 2021-11-22 09:28:52">2021-11-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95/" title="JavaScript常用原生方法"><img src="https://i.loli.net/2021/03/11/hYK1clMvJsmr5H9.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript常用原生方法"/></a><div class="content"><a class="title" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95/" title="JavaScript常用原生方法">JavaScript常用原生方法</a><time datetime="2021-11-21T03:52:16.861Z" title="发表于 2021-11-21 11:52:16">2021-11-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9FDOM%E6%93%8D%E4%BD%9C/" title="JavaScript常用原生DOM操作"><img src="https://i.loli.net/2021/03/11/5XyDoeETWs1Hraq.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JavaScript常用原生DOM操作"/></a><div class="content"><a class="title" href="/2021/11/21/JavaScript%E5%B8%B8%E7%94%A8%E5%8E%9F%E7%94%9FDOM%E6%93%8D%E4%BD%9C/" title="JavaScript常用原生DOM操作">JavaScript常用原生DOM操作</a><time datetime="2021-11-21T03:52:16.860Z" title="发表于 2021-11-21 11:52:16">2021-11-21</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 阿郎佐虎之心</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="5143337014" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
